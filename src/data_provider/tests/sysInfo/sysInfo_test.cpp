@@ -58,6 +58,12 @@ nlohmann::json SysInfo::getPorts() const
 {
     return {};
 }
+nlohmann::json SysInfo::getHotfixes() const
+{
+    return {};
+}
+//void SysInfo::getProcessesInfo(std::function<void(nlohmann::json &)>) const {}
+void SysInfo::getPackages(std::function<void(nlohmann::json &)>) const {}
 
 class SysInfoWrapper: public SysInfo
 {
@@ -71,9 +77,13 @@ class SysInfoWrapper: public SysInfo
         MOCK_METHOD(void, getMemory, (nlohmann::json&), (const override));
         MOCK_METHOD(nlohmann::json, getPackages, (), (const override));
         MOCK_METHOD(nlohmann::json, getOsInfo, (), (const override));
+        MOCK_MEHTOD(void, getProcessesInfo, (std::function<void(nlohmann::json &)>), (const override));
         MOCK_METHOD(nlohmann::json, getProcessesInfo, (), (const override));
         MOCK_METHOD(nlohmann::json, getNetworks, (), (const override));
         MOCK_METHOD(nlohmann::json, getPorts, (), (const override));
+        MOCK_METHOD(nlohmann::json, getHotfixes, (), (const override));
+        MOCK_METHOD(void, getPackages, (std::function<void(nlohmann::json &)>), (const override));
+
 };
 
 TEST_F(SysInfoTest, hardware)

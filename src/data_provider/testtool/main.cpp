@@ -29,6 +29,7 @@ int main()
         const auto& networks  {info.networks()};
         const auto& os        {info.os()};
         const auto& ports     {info.ports()};
+        const auto& hotfixes  {info.hotfixes()};
 
         std::cout << hw.dump(JSON_PRETTY_SPACES) << std::endl;
         std::cout << packages.dump(JSON_PRETTY_SPACES) << std::endl;
@@ -36,6 +37,7 @@ int main()
         std::cout << networks.dump(JSON_PRETTY_SPACES) << std::endl;
         std::cout << os.dump(JSON_PRETTY_SPACES) << std::endl;
         std::cout << ports.dump(JSON_PRETTY_SPACES) << std::endl;
+        std::cout << hotfixes.dump(JSON_PRETTY_SPACES) << std::endl;
 
         info.processes([](nlohmann::json & process)
         {

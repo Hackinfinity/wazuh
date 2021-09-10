@@ -765,3 +765,11 @@ void SysInfo::getPackages(std::function<void(nlohmann::json&)> /*callback*/) con
 {
     // TO DO
 }
+
+nlohmann::json SysInfo::getHotfixes() const
+{
+    nlohmann::json ret;
+    PackageWindowsHelper::getHotFixFromReg(HKEY_LOCAL_MACHINE, PackageWindowsHelper::WIN_REG_HOTFIX, ret);
+    PackageWindowsHelper::getHotFixFromRegNT(HKEY_LOCAL_MACHINE, PackageWindowsHelper::VISTA_REG_HOTFIX, ret);
+    return ret;
+}

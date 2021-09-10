@@ -93,6 +93,27 @@ namespace DbSync
             /// an exception object as storage for error messages
             std::runtime_error m_error;
     };
+
+    /**
+     *   This class should be used by concrete types to report errors.
+    */
+    class unique_constraint_error : public std::exception
+    {
+        public:
+            __attribute__((__returns_nonnull__))
+            const char* what() const noexcept override
+            {
+                return m_error.what();
+            }
+
+            explicit unique_constraint_error(const std::string& whatArg)
+                : m_error{ whatArg }
+            {}
+
+        private:
+            /// an exception object as storage for error messages
+            std::runtime_error m_error;
+    };
 }
 
 #endif // _DBSYNC_EXCEPTION_H
